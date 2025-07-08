@@ -1,0 +1,40 @@
+import "dotenv/config";
+import connectDB from "./config/db.js";
+import express from 'express';
+import morgan from 'morgan';
+import tasksRouter from "./routes/tasks.js";
+
+const server = express();
+const host = process.env.HOST;
+const port = process.env.PORT;
+
+connectDB();
+
+server.use(express.json())
+server.use(morgan('dev'))
+server.use("/tasks", tasksRouter)
+
+server.get("/", (req, res)=>{
+  res.status(204).send();
+})
+
+server.listen(port, ()=>{
+  console.log(`Server is running at port: ${port}`)
+})
+
+
+
+
+/*
+const tasks = [{name: "Do math exercise", date: 7|0o7|2025, relevance: "Important"}]
+
+server.post('/tasks', (req, res)=>{
+  const newTask = {
+    name:'',
+    date:'',
+    relevance:'',
+  }
+  tasks.push(newTask);
+  res.status(201).json({ message: 'Your new task', task: newTask })
+} )
+*/
