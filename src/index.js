@@ -2,7 +2,8 @@ import "dotenv/config";
 import connectDB from "./config/db.js";
 import express from 'express';
 import morgan from 'morgan';
-import tasksRouter from "./routes/tasks.js";
+import tasksRouter from "./routers/tasks.js";
+import studentsRouter from "./routers/students.js";
 
 const server = express();
 const host = process.env.HOST;
@@ -12,6 +13,7 @@ connectDB();
 
 server.use(express.json())
 server.use(morgan('dev'))
+server.use("/students", studentsRouter)
 server.use("/tasks", tasksRouter)
 
 server.get("/", (req, res)=>{
