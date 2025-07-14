@@ -1,6 +1,7 @@
 import "dotenv/config";
 import connectDB from "./config/db.js";
 import express from 'express';
+import cors from 'cors';
 import morgan from 'morgan';
 import tasksRouter from "./routers/tasks.js";
 import studentsRouter from "./routers/students.js";
@@ -11,10 +12,11 @@ const port = process.env.PORT;
 
 connectDB();
 
-server.use(express.json())
-server.use(morgan('dev'))
-server.use("/students", studentsRouter)
-server.use("/tasks", tasksRouter)
+server.use(cors());
+server.use(express.json());
+server.use(morgan('dev'));
+server.use("/students", studentsRouter);
+server.use("/tasks", tasksRouter);
 
 server.get("/", (req, res)=>{
   res.status(204).send();
