@@ -3,10 +3,11 @@ import studentsController from "../controllers/students.js";
 
 const studentsRouter = Router();
 
-studentsRouter.post("/", studentsController.create);
-studentsRouter.get("/", studentsController.readAll);
-studentsRouter.get("/:id", studentsController.readOne);
-studentsRouter.put("/:id", studentsController.update);
-studentsRouter.delete("/:id", studentsController.delete);
+studentsRouter.post("/register", studentsController.createStudentUser);
+studentsRouter.post("/login", studentsController.loginUser);
+studentsRouter.get("/register", studentsController.readAllStudentUsers);
+studentsRouter.get("/register/:id", studentsController.readOneStudentUser);
+studentsRouter.put("/register/:id", studentsController.updateStudentUser);
+studentsRouter.delete("/register/:id", studentsController.deleteStudentUser);
 
 export default studentsRouter; 
