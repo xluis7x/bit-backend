@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 export function getToken(payload) {
     return new Promise((res, rej)=> {
